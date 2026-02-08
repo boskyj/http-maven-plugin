@@ -285,7 +285,7 @@ Set `failOnError` to false for non-critical calls:
 ## Requirements
 
 - Maven 3.6.0 or higher
-- Java 8 or higher
+- Java 11 or higher
 
 ## Keywords
 
