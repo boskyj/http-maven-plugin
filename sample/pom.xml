@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.example</groupId>
+    <artifactId>test-project</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.github.httpmaven</groupId>
+                <artifactId>http-maven-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <executions>
+                    <!-- JSONPath extraction -->
+                    <execution>
+                        <id>get-repo-info</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>http-call</goal>
+                        </goals>
+                        <configuration>
+                            <url>https://api.github.com/repos/apache/maven</url>
+                            <method>GET</method>
+                            <headers>
+                                <Accept>application/json</Accept>
+                            </headers>
+                            <jsonPaths>
+                                <branch>$.default_branch</branch>
+                                <stars>$.stargazers_count</stars>
+                                <language>$.language</language>
+                            </jsonPaths>
+                        </configuration>
+                    </execution>
+                    
+                    <!-- Regex pattern fallback -->
+                    <execution>
+                        <id>get-text-data</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>http-call</goal>
+                        </goals>
+                        <configuration>
+                            <url>https://httpbin.org/html</url>
+                            <method>GET</method>
+                            <extractPatterns>
+                                <title>&lt;title&gt;([^&lt;]+)&lt;/title&gt;</title>
+                                <h1>&lt;h1&gt;([^&lt;]+)&lt;/h1&gt;</h1>
+                            </extractPatterns>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>echo-values</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="Branch: ${branch}"/>
+                                <echo message="Stars: ${stars}"/>
+                                <echo message="Language: ${language}"/>
+                                <echo message="Title: ${title}"/>
+                                <echo message="H1: ${h1}"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
