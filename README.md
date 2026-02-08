@@ -35,13 +35,13 @@ Integrate external APIs and services directly into your Maven build lifecycle:
 
 ## Installation
 
-Add the plugin to your `pom.xml`:
+Add the plugin to your `pom.xml` (check [Maven Central](https://search.maven.org/artifact/io.github.httpmaven/http-maven-plugin) for latest version):
 
 ```xml
 <plugin>
     <groupId>io.github.httpmaven</groupId>
     <artifactId>http-maven-plugin</artifactId>
-    <version>1.0.2</version>
+    <version>VERSION</version>
     <executions>
         <execution>
             <id>get-api-data</id>
