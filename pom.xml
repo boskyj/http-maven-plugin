@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.httpmaven</groupId>
+    <groupId>io.github.boskyj</groupId>
     <artifactId>http-maven-plugin</artifactId>
     <version>1.0.3</version>
     <packaging>maven-plugin</packaging>
     
     <name>HTTP Maven Plugin</name>
     <description>Maven plugin for making HTTP calls and extracting values from responses</description>
-    <url>https://github.com/yourusername/http-maven-plugin</url>
+    <url>https://github.com/boskyj/http-maven-plugin</url>
     
     <licenses>
         <license>
@@ -24,7 +24,7 @@
     <developers>
         <developer>
             <id>boskyj</id>
-            <name>Vosky Joseph</name>
+            <name>Bosky Joseph</name>
         </developer>
     </developers>
     

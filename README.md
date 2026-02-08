@@ -2,7 +2,7 @@
 
 A Maven plugin for making HTTP calls and extracting values from responses to set as Maven properties.
 
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.httpmaven/http-maven-plugin.svg)](https://search.maven.org/artifact/io.github.httpmaven/http-maven-plugin)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.boskyj/http-maven-plugin.svg)](https://search.maven.org/artifact/io.github.boskyj/http-maven-plugin)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Why Use This Plugin?
@@ -35,11 +35,11 @@ Integrate external APIs and services directly into your Maven build lifecycle:
 
 ## Installation
 
-Add the plugin to your `pom.xml` (check [Maven Central](https://search.maven.org/artifact/io.github.httpmaven/http-maven-plugin) for latest version):
+Add the plugin to your `pom.xml` (check [Maven Central](https://search.maven.org/artifact/io.github.boskyj/http-maven-plugin) for latest version):
 
 ```xml
 <plugin>
-    <groupId>io.github.httpmaven</groupId>
+    <groupId>io.github.boskyj</groupId>
     <artifactId>http-maven-plugin</artifactId>
     <version>VERSION</version>
     <executions>
