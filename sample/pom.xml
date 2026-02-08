@@ -20,7 +20,7 @@
             <plugin>
                 <groupId>io.github.httpmaven</groupId>
                 <artifactId>http-maven-plugin</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0.2-SNAPSHOT</version>
                 <executions>
                     <!-- JSONPath extraction -->
                     <execution>
@@ -43,10 +43,10 @@
                         </configuration>
                     </execution>
                     
-                    <!-- Regex pattern fallback -->
+                    <!-- Regex pattern extraction -->
                     <execution>
                         <id>get-text-data</id>
-                        <phase>compile</phase>
+                        <phase>validate</phase>
                         <goals>
                             <goal>http-call</goal>
                         </goals>
@@ -54,8 +54,8 @@
                             <url>https://httpbin.org/html</url>
                             <method>GET</method>
                             <extractPatterns>
-                                <title>&lt;title&gt;([^&lt;]+)&lt;/title&gt;</title>
-                                <h1>&lt;h1&gt;([^&lt;]+)&lt;/h1&gt;</h1>
+                                <page.title>&lt;h1&gt;([^&lt;]+)&lt;/h1&gt;</page.title>
+                                <html.tag>&lt;!DOCTYPE ([^&gt;]+)&gt;</html.tag>
                             </extractPatterns>
                         </configuration>
                     </execution>
@@ -69,7 +69,7 @@
                 <executions>
                     <execution>
                         <id>echo-values</id>
-                        <phase>compile</phase>
+                        <phase>process-resources</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
@@ -78,8 +78,8 @@
                                 <echo message="Branch: ${branch}"/>
                                 <echo message="Stars: ${stars}"/>
                                 <echo message="Language: ${language}"/>
-                                <echo message="Title: ${title}"/>
-                                <echo message="H1: ${h1}"/>
+                                <echo message="Page Title: ${page.title}"/>
+                                <echo message="HTML Tag: ${html.tag}"/>
                             </target>
                         </configuration>
                     </execution>
