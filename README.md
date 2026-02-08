@@ -41,7 +41,7 @@ Add the plugin to your `pom.xml`:
 <plugin>
     <groupId>io.github.httpmaven</groupId>
     <artifactId>http-maven-plugin</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <executions>
         <execution>
             <id>get-api-data</id>
@@ -286,6 +286,10 @@ Set `failOnError` to false for non-critical calls:
 
 - Maven 3.6.0 or higher
 - Java 11 or higher
+
+## Installation from Maven Central
+
+The plugin is available on Maven Central. Simply add it to your `pom.xml` - no additional repositories needed.
 
 ## Keywords
 
