@@ -8,20 +8,30 @@ A Maven plugin for making HTTP calls and extracting values from responses to set
 ## Why Use This Plugin?
 
 Integrate external APIs and services directly into your Maven build lifecycle:
+- **Call REST APIs** from Maven builds
+- **Fetch authentication tokens** from OAuth/API endpoints
+- **Invoke HTTP endpoints** during build process
 - Fetch version information from external services
 - Validate deployments by calling health check endpoints
 - Retrieve configuration values from remote sources
 - Automate API testing within your build process
 - Extract and use dynamic values in your build
+- **Consume RESTful web services** in Maven
+- **Make HTTP requests** with GET, POST, PUT, DELETE methods
 
 ## Features
 
+- **REST API integration** - Call any REST endpoint from Maven
+- **HTTP client for Maven** - Built-in HTTP client functionality
 - Support for GET, POST, PUT, DELETE HTTP methods
+- **OAuth token retrieval** - Fetch authentication tokens
+- **API authentication** - Bearer tokens, API keys, custom headers
 - JSONPath and regex pattern extraction
 - Form data and JSON body support
 - Retry mechanism with configurable delays
 - Response file saving
 - Comprehensive error handling
+- **Web service invocation** during build
 
 ## Installation
 
@@ -116,6 +126,51 @@ Add the plugin to your `pom.xml`:
         <Content-Type>application/json</Content-Type>
     </headers>
 </configuration>
+```
+
+### OAuth Token Retrieval
+```xml
+<execution>
+    <id>get-oauth-token</id>
+    <phase>initialize</phase>
+    <goals>
+        <goal>http-call</goal>
+    </goals>
+    <configuration>
+        <url>https://auth.example.com/oauth/token</url>
+        <method>POST</method>
+        <formData>
+            <grant_type>client_credentials</grant_type>
+            <client_id>${oauth.client.id}</client_id>
+            <client_secret>${oauth.client.secret}</client_secret>
+        </formData>
+        <jsonPaths>
+            <access.token>$.access_token</access.token>
+        </jsonPaths>
+    </configuration>
+</execution>
+```
+
+### REST API Call with JSON Response
+```xml
+<execution>
+    <id>call-rest-api</id>
+    <phase>validate</phase>
+    <goals>
+        <goal>http-call</goal>
+    </goals>
+    <configuration>
+        <url>https://api.example.com/users/123</url>
+        <method>GET</method>
+        <headers>
+            <Authorization>Bearer ${access.token}</Authorization>
+        </headers>
+        <jsonPaths>
+            <user.name>$.name</user.name>
+            <user.email>$.email</user.email>
+        </jsonPaths>
+    </configuration>
+</execution>
 ```
 
 ## Examples
@@ -231,6 +286,10 @@ Set `failOnError` to false for non-critical calls:
 
 - Maven 3.6.0 or higher
 - Java 8 or higher
+
+## Keywords
+
+Maven HTTP plugin, REST API Maven, Maven REST client, HTTP client Maven plugin, Maven API call, invoke REST API Maven, Maven web service client, OAuth Maven plugin, Maven authentication token, HTTP request Maven, RESTful web service Maven, Maven HTTP GET POST, API integration Maven, Maven external API call
 
 ## Contributing
 
